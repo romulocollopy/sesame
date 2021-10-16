@@ -2,7 +2,7 @@
 PORT=${PORT:-'3000'}
 HOST=${HOST:-'0.0.0.0'}
 
-COMMAND="cargo run"
+COMMAND="cargo watch -x run"
 
 if [ ${DEBUG} = 'True' ]; then
     echo "Starting server in DEBUG mode and RELOAD"

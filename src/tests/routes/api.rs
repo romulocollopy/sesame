@@ -50,5 +50,5 @@ async fn json_get() {
 
     let body = hyper::body::to_bytes(response.into_body()).await.unwrap();
     let body: Value = serde_json::from_slice(&body).unwrap();
-    assert_eq!(body, json!(150));
+    assert_eq!(body, json!(1));
 }

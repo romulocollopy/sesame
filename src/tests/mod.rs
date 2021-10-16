@@ -1,2 +1,2 @@
 mod routes;
-mod setup;
+pub(crate) mod setup;

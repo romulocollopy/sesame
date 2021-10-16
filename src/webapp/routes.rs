@@ -20,7 +20,8 @@ pub mod ssr {
 }
 
 pub mod api {
-    use crate::infra::database::connection_test;
+    use crate::chassis::repository::{DbQuery, Repository};
+    use crate::infra::database::DbPool;
     use axum::{handler::get, handler::post, routing::BoxRoute, Json, Router};
 
     pub fn get_routes() -> Router<BoxRoute> {
@@ -30,10 +31,9 @@ pub mod api {
             .boxed()
     }
 
-    async fn fuuu() -> String {
-        // `GET /foo` called
-        let result = connection_test().await.unwrap_or_else(|_| (-1_i64,));
-        String::from(format!("{}", result.0))
+    async fn fuuu(db_pool: DbPool) -> String {
+        let row = Repository::new(db_pool).test_connection().await;
+        String::from(format!("{}", row.0))
     }
 
     async fn json(payload: Json<serde_json::Value>) -> Json<serde_json::Value> {

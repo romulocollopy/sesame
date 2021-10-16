@@ -1,2 +1,2 @@
 mod routes;
-pub mod server;
+pub(crate) mod server;
